@@ -1,0 +1,3 @@
+Latitude: 50.16980318664492
+Longitude: -0.1444459907825708
+Oil Spill Direction: 255.00°

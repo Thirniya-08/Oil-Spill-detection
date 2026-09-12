@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIS Oil Tanker Tracker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+#map {
+    height: 90vh;
+    width: 100vw;
+}
+
+#controls {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+
+#controls label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#controls input {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#controls button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#controls button:hover {
+    background-color: #0056b3;
+}
+
+.arrow-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="controls">
+        <label>Oil Spill Latitude: <input type="number" id="spillLat" step="0.0001"></label>
+        <label>Oil Spill Longitude: <input type="number" id="spillLon" step="0.0001"></label>
+        <button onclick="markOilSpill()">Mark Oil Spill</button>
+        <button onclick="findNearest()">Find Nearest Ships</button>
+        <button onclick="checkTrajectory()">Check Ship Trajectory</button>
+        
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        const map = L.map('map').setView([45, -3], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        let spillMarker = null;
+
+        function markOilSpill() {
+            const lat = parseFloat(document.getElementById("spillLat").value);
+            const lon = parseFloat(document.getElementById("spillLon").value);
+            if (isNaN(lat) || isNaN(lon)) return alert("Please enter valid latitude and longitude.");
+
+            if (spillMarker) map.removeLayer(spillMarker);
+
+            const redIcon = L.icon({
+                iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                iconSize: [32, 32], iconAnchor: [16, 32]
+            });
+
+            spillMarker = L.marker([lat, lon], { icon: redIcon })
+                .addTo(map)
+                .bindPopup(`<b>Oil Spill Location</b><br>Lat: ${lat}<br>Lon: ${lon}`)
+                .openPopup();
+        }
+
+        async function fetchShips() {
+            try {
+                const response = await fetch("/ships");
+                const ships = await response.json();
+
+                ships.forEach(ship => {
+                    const arrowIcon = L.divIcon({
+                        className: 'arrow-icon',
+                        html: `<div style="transform: rotate(${ship.COG}deg);">
+                                <img src="arrowhead.png" style="width: 20px; height: 20px;">
+                                
+</div>`,
+                        iconSize: [20, 20]
+                    });
+
+                    L.marker([ship.Latitude, ship.Longitude], { icon: arrowIcon })
+                        .addTo(map)
+                        .bindPopup(`<b>Ship ID:</b> ${ship.ShipId}<br><b>Type:</b> ${ship.Type}`);
+                });
+            } catch (error) {
+                console.error("Error fetching ship data:", error);
+            }
+        }
+
+        async function findNearest() {
+            if (!spillMarker) return alert("Please mark an oil spill location first.");
+            const { lat, lng } = spillMarker.getLatLng();
+
+            const response = await fetch("/api/nearest", {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ latitude: lat, longitude: lng, k: 5 })
+            });
+
+            const data = await response.json();
+            alert(`Nearest Ships: ${data.map(d => `ShipId: ${d.ShipId}, Distance: ${d.Distance.toFixed(2)} km`).join("\n")}`);
+        }
+
+        async function checkTrajectory() {
+            if (!spillMarker) return alert("Please mark an oil spill location first.");
+            const { lat, lng } = spillMarker.getLatLng();
+
+            const response = await fetch("/api/trajectory", {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ latitude: lat, longitude: lng })
+            });
+
+            const ships = await response.json();
+            alert(`Ships Heading Toward Spill:\n${ships.map(s => `ShipId: ${s.ShipId}`).join("\n")}`);
+
+        }
+
+        
+
+        fetchShips();
+    </script>
+
+</body>
+</html>

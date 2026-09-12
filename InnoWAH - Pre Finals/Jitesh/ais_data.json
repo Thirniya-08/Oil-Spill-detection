@@ -1,0 +1,162 @@
+[
+    {
+        "ShipId": "219374000",
+        "Latitude": 50.472926666666666,
+        "Longitude": -0.22465,
+        "SOG": 8.6,
+        "COG": 254.0,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "636021481",
+        "Latitude": 50.249248333333334,
+        "Longitude": -3.4072283333333333,
+        "SOG": 12.0,
+        "COG": 202.5,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "248976000",
+        "Latitude": 50.38471833333333,
+        "Longitude": -6.008766666666667,
+        "SOG": 12.1,
+        "COG": 195.9,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "256928000",
+        "Latitude": 37.908953333333336,
+        "Longitude": -8.876653333333334,
+        "SOG": 1.1,
+        "COG": 317.7,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "626281000",
+        "Latitude": 50.54266666666667,
+        "Longitude": 0.2612833333333333,
+        "SOG": 4.4,
+        "COG": 252.0,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "538005095",
+        "Latitude": 50.53977833333333,
+        "Longitude": -0.5433783333333333,
+        "SOG": 1.1,
+        "COG": 62.8,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "538006822",
+        "Latitude": 36.2123,
+        "Longitude": -4.961581666666667,
+        "SOG": 13.9,
+        "COG": 79.9,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "249435000",
+        "Latitude": 47.237435,
+        "Longitude": -2.249573333333333,
+        "SOG": 11.3,
+        "COG": 54.6,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "256325000",
+        "Latitude": 49.69095,
+        "Longitude": -0.37158833333333335,
+        "SOG": 13.1,
+        "COG": 347.5,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "636017501",
+        "Latitude": 50.799785,
+        "Longitude": -1.2993466666666669,
+        "SOG": 9.4,
+        "COG": 40.9,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "636019152",
+        "Latitude": 50.70030833333333,
+        "Longitude": 0.781395,
+        "SOG": 11.6,
+        "COG": 235.5,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "248547000",
+        "Latitude": 37.937125,
+        "Longitude": -8.991915,
+        "SOG": 5.0,
+        "COG": 130.9,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "308652000",
+        "Latitude": 37.90917666666667,
+        "Longitude": -8.865558333333333,
+        "SOG": 1.1,
+        "COG": 50.3,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "244830182",
+        "Latitude": 49.30083833333333,
+        "Longitude": -2.5692933333333334,
+        "SOG": 7.1,
+        "COG": 130.6,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "256360000",
+        "Latitude": 41.05085333333333,
+        "Longitude": -8.80202,
+        "SOG": 6.5,
+        "COG": 211.2,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "538006271",
+        "Latitude": 50.50355833333333,
+        "Longitude": 0.14175833333333332,
+        "SOG": 9.7,
+        "COG": 269.1,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "226340000",
+        "Latitude": 46.807543333333335,
+        "Longitude": -2.9559116666666667,
+        "SOG": 10.4,
+        "COG": 44.1,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "255804340",
+        "Latitude": 37.9584,
+        "Longitude": -0.25620333333333334,
+        "SOG": 13.2,
+        "COG": 211.1,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "249255000",
+        "Latitude": 50.49433333333333,
+        "Longitude": -0.215,
+        "SOG": 11.6,
+        "COG": 255.6,
+        "Type": "Tanker Ship"
+    },
+    {
+        "ShipId": "255834000",
+        "Latitude": 37.89477333333333,
+        "Longitude": -0.28110666666666667,
+        "SOG": 11.9,
+        "COG": 208.4,
+        "Type": "Tanker Ship"
+    }
+]
